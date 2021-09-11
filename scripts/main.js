@@ -180,7 +180,7 @@ const app = Vue.createApp({
         
     }
 })
-const consola = app.mount("#app")
+app.mount("#app")
 
 function ordenar(criteria) {
     return function (a, b) {
