@@ -16,11 +16,12 @@ const app = Vue.createApp({
     data() {
         return {
             membersData: [],
-            empty: false,
+            isEmpty: false,
             partyArray: [],
             stateArray: ["Select All"],
             stateID: "Select All",
             sortCriteria: "",
+            filtered: [],
             sortDirection: true,
             statistics: {
                 total: [],
@@ -145,6 +146,9 @@ const app = Vue.createApp({
             this.membersData.sort(ordenarB(sortBy))
             this.sortDirection = true
             return this.sortCriteria
+        },
+        noValuesFound() {
+            this.filtered.length == 0 ? this.isEmpty = true : this.isEmpty = false
         }
     },
     computed: {
@@ -155,21 +159,25 @@ const app = Vue.createApp({
             }
             // Both filters
             if (this.stateID != "Select All" && this.partyArray.length > 0) {
-                return this.membersData.filter(member => this.partyArray.includes(member.party) && this.stateID == member.state)
+                this.filtered = this.membersData.filter(member => this.partyArray.includes(member.party) && this.stateID == member.state)
+                this.noValuesFound()
+                return this.filtered
             }
             // Only State Filter
             if (this.stateID != "Select All") {
-                return this.membersData.filter(member => this.stateID == member.state)
+                this.filtered = this.membersData.filter(member => this.stateID == member.state)
+                this.noValuesFound()
+                return this.filtered
             }
             // Only Party Filter
             if (this.partyArray.length > 0) {
-                return this.membersData.filter(member => this.partyArray.includes(member.party))
+                this.filtered = this.membersData.filter(member => this.partyArray.includes(member.party))
+                this.noValuesFound()
+                return this.filtered
 
             }
-        },
-        noValuesFound() {
-            this.empty = (this.filteredMembers == 0)
         }
+        
     }
 })
 const consola = app.mount("#app")

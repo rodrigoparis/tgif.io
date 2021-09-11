@@ -114,7 +114,7 @@
             </section>
 
             <table class="table table-light table-hover">
-                <thead class="sticky-top thead" v-show="!empty">
+                <thead class="sticky-top thead" v-if="!isEmpty">
                     <tr class="table text-center justify-content-between">
                         <th @click="sortTable('last_name')">
                             Full name
@@ -153,7 +153,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="notfound-div" id="no-values" v-show="empty">
+            <div class="notfound-div" id="no-values" v-show="isEmpty">
                 <p id="confused-text" class="text-center">Oh no! No results match your request</p>
                 <img src="./assets/confused.png" alt="confused image" id="confused-img">
 
