@@ -5,11 +5,11 @@ let tableToRender = document.querySelectorAll("tbody")
 
 
 let table = document.getElementById("data")
-let membersData = [];
-let partyArray = [];
-let stateID = "";
-let filteredMembers = []
-let sortCriteria = ""
+// let membersData = [];
+// let partyArray = [];
+// let stateID = "";
+// let filteredMembers = []
+// let sortCriteria = ""
 
 
 // FETCH
@@ -27,13 +27,13 @@ const app = Vue.createApp({
     // funcion data, devuelve un objeto con mucha información
     data() {
         return {
-            membersData,
-            filteredMembers,
+            membersData: [],
+            // filteredMembers:[],
             empty: false,
             partyArray: [],
             stateArray: ["Select All"],
             stateID: "Select All",
-            sortCriteria: [],
+            sortCriteria: "",
             ascendente: true,
             statistics: {
                 total: [],
@@ -73,9 +73,9 @@ const app = Vue.createApp({
         fetch(endpoint, init)
             .then(respuesta => respuesta.json())
             .then(data => {
-
                 this.membersData = data.results[0].members
-                this.filteredMembers = this.membersData
+                this.filteredMembers
+                // this.filteredMembers = this.membersData
                 this.fillData();
                 this.selectInfo();
                 loader.style.visibility = "hidden";
@@ -160,32 +160,31 @@ const app = Vue.createApp({
         }
     },
     computed: {
-        filterTablebyParty() {
-            // No hay filtros aplicados
+        filteredMembers() {
             if (this.partyArray.length == 0 && this.stateID == "Select All") {
-                return this.filteredMembers = this.membersData
+                return this.membersData
+
             }
             // Ambos filtros activados
             if (this.stateID != "Select All" && this.partyArray.length > 0) {
-                this.filteredMembers = this.membersData.filter(member => this.partyArray.includes(member.party) && this.stateID == member.state)
-
-                console.log(this.filteredMembers)
-                return this.filteredMembers
+                return this.membersData.filter(member => this.partyArray.includes(member.party) && this.stateID == member.state)
             }
             // Solamente usando el filtro por Estado
             if (this.stateID != "Select All") {
-                this.filteredMembers = this.membersData.filter(member => this.stateID == member.state)
-                return this.filteredMembers
+                return  this.membersData.filter(member => this.stateID == member.state)
+                
             }
             // Solamente usando el filtro por Partido
             if (this.partyArray.length > 0) {
-                this.filteredMembers = this.membersData.filter(member => this.partyArray.includes(member.party))
-                return this.filteredMembers
+                return this.membersData.filter(member => this.partyArray.includes(member.party))
+               
             }
         },
         sortTable() {
             if (this.ascendente) {
                 this.filteredMembers = this.filteredMembers.sort(ordenar(this.sortCriteria[this.sortCriteria.length - 1]))
+                console.log(this.stateID)
+
                 this.ascendente = false
                 return this.sortCriteria
             }
@@ -194,7 +193,7 @@ const app = Vue.createApp({
             return this.sortCriteria
         },
         noValuesFound() {
-            this.empty = (this.filteredMembers.length == 0)
+            this.empty = (this.filteredMembers == 0)
         }
     }
 })

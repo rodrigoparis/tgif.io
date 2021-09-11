@@ -115,12 +115,14 @@
                     </div>
                 </section>
             </section>
+            {{partyArray}}
+            {{stateID}}
             <table class="table table-light table-hover">
                 <thead id="thead" class="sticky-top" v-show="!empty">
                     <tr class="table text-center justify-content-between">
                         <th>
                             <input type="checkbox" id="name" name="drone" value="last_name" v-model="sortCriteria">
-                            <label for="name" class="sm-p-5">Full name
+                            <label for="last_name" class="sm-p-5">Full name
                                 <img src="./assets/arrow.png" alt="" class="arrow">
                             </label>
                         </th>
