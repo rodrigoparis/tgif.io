@@ -34,7 +34,7 @@ const app = Vue.createApp({
             stateArray: ["Select All"],
             stateID: "Select All",
             sortCriteria: "",
-            ascendente: true,
+            sortDirection: true,
             statistics: {
                 total: [],
                 parties: [
@@ -157,6 +157,16 @@ const app = Vue.createApp({
                     }
                 })
 
+        },
+        sortTable(sortBy) {
+            if (this.sortDirection) {
+                this.filteredMembers = this.filteredMembers.sort(ordenar(sortBy))
+                this.sortDirection = false
+                return this.sortDirection
+            }
+            this.filteredMembers = this.filteredMembers.sort(ordenarB(sortBy))
+            this.sortDirection = true
+            return this.sortCriteria
         }
     },
     computed: {
@@ -180,18 +190,7 @@ const app = Vue.createApp({
                
             }
         },
-        sortTable() {
-            if (this.ascendente) {
-                this.filteredMembers = this.filteredMembers.sort(ordenar(this.sortCriteria[this.sortCriteria.length - 1]))
-                console.log(this.stateID)
-
-                this.ascendente = false
-                return this.sortCriteria
-            }
-            this.ascendente = true
-            this.filteredMembers = this.filteredMembers.sort(ordenarB(this.sortCriteria[this.sortCriteria.length - 1]))
-            return this.sortCriteria
-        },
+        
         noValuesFound() {
             this.empty = (this.filteredMembers == 0)
         }

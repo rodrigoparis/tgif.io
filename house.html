@@ -74,7 +74,7 @@
             </div>
         </div>
     </nav>
-    
+
     <main class="mx-4" id="main">
         <section>
             <h2 class="p-4">Congressmen</h2>
@@ -115,39 +115,32 @@
                     </div>
                 </section>
             </section>
-            {{partyArray}}
-            {{stateID}}
+
             <table class="table table-light table-hover">
                 <thead id="thead" class="sticky-top" v-show="!empty">
                     <tr class="table text-center justify-content-between">
-                        <th>
-                            <input type="checkbox" id="name" name="drone" value="last_name" v-model="sortCriteria">
-                            <label for="last_name" class="sm-p-5">Full name
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="filteredMembers('last_name')">
+                            Full name
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="checkbox" id="party" name="drone" value="party">
-                            <label for="party">Party
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="filteredMembers('party')">
+                            Party
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="checkbox" id="state" name="drone" value="state" v-model="sortCriteria"
-                                v-model="ascendente">
-                            <label for="state">State
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="filteredMembers('state')">
+                            State
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="checkbox" id="seniority" name="drone" value="seniority">
-                            <label for="seniority">Seniority
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        
+                        <th @click="filteredMembers('seniority')">
+                            Seniority
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th>
-                            <input type="checkbox" id="votes" name="drone" value="votes_with_party_pct">
-                            <label for="votes">Votes
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="filteredMembers('votes')">
+                            Votes
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
+                        
                     </tr>
                 </thead>
                 <tbody id="data">
