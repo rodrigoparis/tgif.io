@@ -112,39 +112,33 @@
                     </div>
                 </section>
             </section>
+
             <table class="table table-light table-hover">
-                <thead id="thead" class="sticky-top" v-show="!empty">
+                <thead class="sticky-top thead" v-show="!empty">
                     <tr class="table text-center justify-content-between">
-                        <th>
-                            <input type="radio" id="name" name="drone" value="last_name" v-on:click="sortCriteria">
-                            <label for="name" class="sm-p-5">Full name
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="sortTable('last_name')">
+                            Full name
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="radio" id="party" name="drone" value="party" v-model="sortCriteria">
-                            <label for="party">Party
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="sortTable('party')">
+                            Party
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="radio" id="state" name="drone" value="state" v-model="sortCriteria">
-                            <label for="state">State
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="sortTable('state')">
+                            State
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th><input type="radio" id="seniority" name="drone" value="seniority" v-model="sortCriteria"
-                                true-value="yes" false-value="no">
-                            <label for="seniority">Seniority
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        
+                        <th @click="sortTable('seniority')">
+                            Seniority
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th>
-                            <input type="radio" id="votes" name="drone" value="votes_with_party_pct"
-                                v-model="sortCriteria">
-                            <label for="votes">Votes
-                                <img src="./assets/arrow.png" alt="" class="arrow">
-                            </label>
+                        <th @click="sortTable('votes_with_party_pct')">
+                            Votes
+                            <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                    </tr>                  
+                        
+                    </tr>
                 </thead>
                 <tbody id="data">
                     <tr v-for="member in filteredMembers">
@@ -154,8 +148,8 @@
                         </td>
                         <td id="party">{{member.party}}</td>
                         <td>{{member.state}}</td>
-                        <td>{{member.seniority}}</td>
-                        <td>{{member.votes_with_party_pct}}%</td>
+                        <td>{{Number.parseInt(member.seniority)}}</td>
+                        <td>{{Number.parseFloat(member.votes_with_party_pct)}}%</td>
                     </tr>
                 </tbody>
             </table>
@@ -168,8 +162,6 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
             </div>
         </div>
-
-
     </main>
     <footer class="d-flex justify-content-center">
         <p class="d-inline p-2 bg-primary text-white">

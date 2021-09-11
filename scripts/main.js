@@ -1,20 +1,9 @@
-let tableToRender = document.querySelectorAll("tbody")
 
-
-
-
-
-let table = document.getElementById("data")
-// let membersData = [];
-// let partyArray = [];
-// let stateID = "";
-// let filteredMembers = []
-// let sortCriteria = ""
-
-
-// FETCH
+// Loader DOM Elements needed
 let loader = document.getElementById("loader")
 let main = document.getElementById("main")
+
+// FETCH
 let chamber = document.querySelector("body").id
 const endpoint = `https://api.propublica.org/congress/v1/113/${chamber}/members.json`
 const init = {
@@ -22,13 +11,11 @@ const init = {
         "X-API-key": "eObmd0hjXfacZmdqvTlfLNE1iyVFB4jp8yxtLqDP"
     }
 }
-
+// VUE
 const app = Vue.createApp({
-    // funcion data, devuelve un objeto con mucha información
     data() {
         return {
             membersData: [],
-            // filteredMembers:[],
             empty: false,
             partyArray: [],
             stateArray: ["Select All"],
@@ -75,7 +62,6 @@ const app = Vue.createApp({
             .then(data => {
                 this.membersData = data.results[0].members
                 this.filteredMembers
-                // this.filteredMembers = this.membersData
                 this.fillData();
                 this.selectInfo();
                 loader.style.visibility = "hidden";
@@ -141,121 +127,103 @@ const app = Vue.createApp({
 
         },
         selectInfo() {
-            this.membersData.sort(function (a, b) {
-                if (a.state > b.state) {
-                    return 1;
-                }
-                if (a.state < b.state) {
-                    return -1;
-                }
-                return 0
-            })
+            this.membersData.sort(ordenar("state"))
                 .forEach(member => {
                     if (!this.stateArray.some(state => state == member.state)) {
                         this.stateArray.push(member.state.toString());
 
                     }
                 })
-
         },
         sortTable(sortBy) {
+            this.sortCriteria = sortBy
             if (this.sortDirection) {
-                this.filteredMembers = this.filteredMembers.sort(ordenar(sortBy))
+                this.membersData.sort(ordenar(sortBy))
                 this.sortDirection = false
                 return this.sortDirection
             }
-            this.filteredMembers = this.filteredMembers.sort(ordenarB(sortBy))
+            this.membersData.sort(ordenarB(sortBy))
             this.sortDirection = true
             return this.sortCriteria
         }
     },
     computed: {
         filteredMembers() {
+            // No filter
             if (this.partyArray.length == 0 && this.stateID == "Select All") {
                 return this.membersData
-
             }
-            // Ambos filtros activados
+            // Both filters
             if (this.stateID != "Select All" && this.partyArray.length > 0) {
                 return this.membersData.filter(member => this.partyArray.includes(member.party) && this.stateID == member.state)
             }
-            // Solamente usando el filtro por Estado
+            // Only State Filter
             if (this.stateID != "Select All") {
-                return  this.membersData.filter(member => this.stateID == member.state)
-                
+                return this.membersData.filter(member => this.stateID == member.state)
             }
-            // Solamente usando el filtro por Partido
+            // Only Party Filter
             if (this.partyArray.length > 0) {
                 return this.membersData.filter(member => this.partyArray.includes(member.party))
-               
+
             }
         },
-        
         noValuesFound() {
             this.empty = (this.filteredMembers == 0)
         }
     }
 })
-app.mount("#app")
+const consola = app.mount("#app")
 
 function ordenar(criteria) {
     return function (a, b) {
-        if (a[criteria] > b[criteria]) {
-            return 1;
+        if (criteria == "votes_with_party_pct" || criteria == "seniority") {
+            if (Number(a[criteria]) > Number(b[criteria])) {
+                return 1;
+            }
+            if (Number(a[criteria]) < Number(b[criteria])) {
+                return -1;
+            }
+            return 0;
+        } else {
+            if (a[criteria] > b[criteria]) {
+                return 1;
+            }
+            if (a[criteria] < b[criteria]) {
+                return -1;
+            }
+            return 0;
         }
-        if (a[criteria] < b[criteria]) {
-            return -1;
-        }
-        return 0;
+
     }
 }
 
 function ordenarB(criteria) {
     return function (a, b) {
-        if (a[criteria] < b[criteria]) {
-            return 1;
+        if (criteria == "votes_with_party_pct" || criteria == "seniority") {
+            if (Number(a[criteria]) < Number(b[criteria])) {
+                return 1;
+            }
+            if (Number(a[criteria]) > Number(b[criteria])) {
+                return -1;
+            }
+            return 0;
+        } else {
+            if (a[criteria] < b[criteria]) {
+                return 1;
+            }
+            if (a[criteria] > b[criteria]) {
+                return -1;
+            }
+            return 0;
         }
-        if (a[criteria] > b[criteria]) {
-            return -1;
-        }
-        return 0;
+
     }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Get the button:
 mybutton = document.getElementById("myBtn");
-// When the user scrolls down 20px from the top of the document, show the button
+// When the user scrolls down 20px (changed to 900px) from the top of the document, show the button
 window.onscroll = function () { scrollFunction() };
 function scrollFunction() {
     if (document.body.scrollTop > 900 || document.documentElement.scrollTop > 900) {

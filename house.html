@@ -117,26 +117,26 @@
             </section>
 
             <table class="table table-light table-hover">
-                <thead id="thead" class="sticky-top" v-show="!empty">
+                <thead class="sticky-top thead" v-show="!empty">
                     <tr class="table text-center justify-content-between">
-                        <th @click="filteredMembers('last_name')">
+                        <th @click="sortTable('last_name')">
                             Full name
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th @click="filteredMembers('party')">
+                        <th @click="sortTable('party')">
                             Party
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th @click="filteredMembers('state')">
+                        <th @click="sortTable('state')">
                             State
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
                         
-                        <th @click="filteredMembers('seniority')">
+                        <th @click="sortTable('seniority')">
                             Seniority
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
-                        <th @click="filteredMembers('votes')">
+                        <th @click="sortTable('votes_with_party_pct')">
                             Votes
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
@@ -151,8 +151,8 @@
                         </td>
                         <td id="party">{{member.party}}</td>
                         <td>{{member.state}}</td>
-                        <td>{{member.seniority}}</td>
-                        <td>{{member.votes_with_party_pct}}%</td>
+                        <td>{{Number.parseInt(member.seniority)}}</td>
+                        <td>{{Number.parseFloat(member.votes_with_party_pct)}}%</td>
                     </tr>
                 </tbody>
             </table>
