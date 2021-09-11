@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>House of Representatives</title>
+</head>
+
+<body class="container" id="senate">
+    <header class="row justify-content-between">
+        <div class="col-2">
+            <h1>
+                Transparent Goverment in Fact
+            </h1>
+        </div>
+        <div class="col-6 text-end align-self-end" id="mail">
+            <a href="mailto:info@tgif.net"><img src="./assets/mail.png" alt="mail image" id="mail-img"></a>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand{-sm|-md|-lg|-xl|-xxl}">
+        <span id="loader" class="d-block"><img src="./assets/loader.gif" alt="" class="img-fluid">
+            <p class="font-italic"> We are loading all the Data</p>
+        </span>
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Congress 113
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./house.html">House</a></li>
+                            <li><a class="dropdown-item" href="./senate.html">Senate</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./house-attendance.html">House Attendance</a></li>
+                            <li><a class="dropdown-item" href="./senate-attendance.html">Senate Attendance</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Loyalty
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./house-loyalty.html">House Loyalty</a></li>
+                            <li><a class="dropdown-item" href="./senate-loyalty.html">Senate Loyalty</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mx-4" id="main">
+        <div id="app">
+            <section class="row d-flex justify-content-around mb-4">
+                <div class="col-sm-12 col-md-5">
+                    <h2 class="p-4">Senate Loyalty</h2>
+                    <p class="text-justify p-2 lh-lg">The Constitution specifies that a majority of members constitutes
+                        a
+                        quorum
+                        to do business in each house. Representatives and senators rarely force the presence of a quorum
+                        by
+                        demanding quorum calls; thus, in
+                        most cases, debates continue even if a majority is not present.</p>
+                    <p class="text-justify p-2 lh-lg">The Senate uses roll-call votes; a clerk calls out the names of
+                        all
+                        the
+                        senators, each senator stating "aye"
+                        or "no" when his or her name is announced. The Senate reserves roll-call votes for the most
+                        formal
+                        matters,
+                        as a roll-call of all 435 representatives takes quite some time; normally, members vote by
+                        electronic
+                        device. In the case of a tie, the motion in question fails. In the Senate, the Vice President
+                        may
+                        (if
+                        present) cast the tiebreaking vote.</p>
+                </div>
+                <div class="col-sm-12 col-md-5 at-glance">
+                    <h2 class="table-header">Senate at a glance</h2>
+                    <table class="table table-bordered table-hover">
+                        <thead class="text-center">
+                            <tr class="table-success">
+                                <th>Party</th>
+                                <th>N° of Representatives</th>
+                                <th>% Missed Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="party in statistics.parties">
+                                <td class="text-start">{{party.name}}</td>
+                                <td>{{party.members.length > 0 ? party.members.length : "-"}}</td>
+                                <td>{{party.averageVotes ? party.averageVotes + '%' : "-"}}</td>
+                            </tr>
+                            <tr>
+                                <td>Total of Representatives</td>
+                                <td>{{statistics.total.length}}</td>
+                                <td>{{isNaN(statistics.totalAverageVotes) ? "-" : statistics.totalAverageVotes + '%'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="row d-flex justify-content-around">
+                <div class="col-sm-12 col-md-12 col-lg-5">
+                    <h2 class="table-header">Least Loyal (Bottom 10% Loyalty)</h2>
+                    <table class="table table-bordered table-hover">
+                        <thead class="sticky-top">
+                            <tr class="table-success">
+                                <th class="text-center align-middle">Name of Representative</th>
+                                <th class="text-center align-middle">N° of Missed Votes</th>
+                                <th class="text-center align-middle">% Missed Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="member in statistics.least_loyals">
+                                <td id="td-max-width" class="text-start">  <a v-bind:href="member.url" target="_BLANK">
+                                        {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
+                                        {{member.first_name}}</a></td>
+                                <td>{{member.missed_votes}}</td>
+                                <td>{{member.missed_votes_pct}}%</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-5">
+                    <h2 class="table-header">Most Loyal (Top 10% Loyalty)</h2>
+                    <table class="table table-bordered table-hover">
+                        <thead class="sticky-top">
+                            <tr class="table-success">
+                                <th class="text-center align-middle">Name of Representative</th>
+                                <th class="text-center align-middle">N° of Missed Votes</th>
+                                <th class="text-center align-middle">% Missed Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="member in statistics.most_loyals">
+                                <td id="td-max-width" class="text-start">  <a v-bind:href="member.url" target="_BLANK">
+                                        {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
+                                        {{member.first_name}}</a></td>
+                                <td>{{member.missed_votes}}</td>
+                                <td>{{member.missed_votes_pct}}%</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div id="div-btn">
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+            </div>
+
+
+        </div>
+    </main>
+    <footer class="d-flex justify-content-center">
+        <p class="d-inline p-2 text-white footer">
+            2016 TGIF @
+        </p>
+        <p class="d-inline p-2 bg-dark text-white">
+            All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>

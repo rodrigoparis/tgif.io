@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>TGIF Home</title>
+</head>
+
+<body class="container">
+    <div id="app">
+        <!-- Vue tiene plantillas, nos sirve para intercalar .js en .html -->
+        <!-- Para intercalar vue, js en html tengo q usar {{}} -->
+        <h1>¡Hola!</h1>
+        <h2 v-show="esVisible">Mi nombre es {{nombre}} {{apellido}} y tengo {{edad}} años</h2>
+
+        <button v-on:click="aumentarEdad" class="m-2 p-2">Aumentar edad</button>
+        <button v-on:click="disminuirEdad" class="m-2 p-2">Disminuir edad</button>
+        <button v-on:click="setearEdad(30)" class="m-2 p-2">Restablecer edad</button>
+        <button v-on:click="cambiarNombre" class="m-2 p-2">Cambiar nombre</button>
+        <button @click="restablecerNombre('Rodrigo')" class="m-2 p-2">Restablecer nombre</button>
+
+        <button @click="toggleVisibilidad" class="m-2 p-2">
+            <span v-if="esVisible" >Ocultar Nombre</span>
+            <span v-else>Mostrar Nombre</span>
+        </button>
+
+        <h2>Posts</h2>
+        <ul>
+            <li v-for="post in posts">
+                <h3>{{post.titulo}}</h3>
+                <p>{{post.cuerpo}}</p>
+                <img v-bind:src="post.imagen" alt="">
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="./scripts/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/app.js"></script>
+
+</body>
+
+
+</html>
