@@ -32,7 +32,7 @@ header{
 
 .img-fluid{
 max-height: 60vh!important;
-margin-left: 1rem!important;
+margin: 0 auto;
 }
 
 /* Loader Funcionalities */
@@ -60,7 +60,7 @@ h1{
     margin-left: 2rem;
     font-family: 'Rubik Mono One', sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 2.5rem;
+    font-size: 6vh!important;
     text-shadow: rgba(0, 0, 0, 0.377) 1px 1px 1px
 }
 
@@ -117,8 +117,9 @@ cursor: pointer;
 #data-div{
     height: 60vh;
     width: auto!important;
+    margin: 0 auto;
     margin-top: 4rem;
-    margin-left: 2rem;
+
 }
 
 
