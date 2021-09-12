@@ -141,7 +141,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="member in statistics.least_loyals">
-                                <td class="td-max-width" class="text-start"> <a v-model:href="member.url" target="_BLANK">
+                                <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
                                 <td>{{member.missed_votes}}</td>
