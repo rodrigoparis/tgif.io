@@ -180,3 +180,20 @@ font-size: 1rem; /* Increase font size */
 background-color: #555; /* Add a dark-grey background on hover */
 font-weight: 500;
 }
+
+
+
+@media (max-width: 600px) {
+  h1{
+    font-size: 4vh!important;
+    margin: 2vh 2vh;
+  }
+
+  header{
+    max-height: 25vh;
+  }
+
+  .img-fluid{
+    height: 40vh;
+  }
+}
