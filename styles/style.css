@@ -133,7 +133,7 @@ cursor: pointer;
 }
 
 /* Para evitar que baile la tabla al cambiar de R a D */
-#td-max-width{
+.td-max-width{
  width: 12rem !important;
 }
 

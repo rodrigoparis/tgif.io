@@ -119,7 +119,7 @@
             <table class="table table-light table-hover">
                 <thead class="sticky-top thead" v-show="!isEmpty">
                     <tr class="table text-center justify-content-between">
-                        <th @click="sortTable('last_name')">
+                        <th @click="sortTable('last_name')" class="td-max-width">
                             Full name
                             <img src="./assets/arrow.png" alt="" class="arrow">
                         </th>
@@ -151,7 +151,7 @@
                         </td>
                         <td id="party">{{member.party}}</td>
                         <td>{{member.state}}</td>
-                        <td class="td-max-width">{{Number.parseInt(member.seniority)}}</td>
+                        <td>{{Number.parseInt(member.seniority)}}</td>
                         <td >{{Number.parseFloat(member.votes_with_party_pct)}}%</td>
                     </tr>
                 </tbody>
