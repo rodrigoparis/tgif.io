@@ -104,21 +104,21 @@
                 <div class="col-sm-12 col-md-5 at-glance">
                     <h2 class="table-header">House at a glance</h2>
                     <table class="table table-bordered table-hover">
-                        <thead class="text-center">
+                        <thead class="text-center"> 
                             <tr class="table thead">
-                                <th>Party</th>
-                                <th>N° of Representatives</th>
-                                <th>% Missed Votes</th>
+                                <th class="td-max-width align-middle">Party</th>
+                                <th class="td-max-width">N° of Repr.</th>
+                                <th class="td-max-width">% Votes w/Party</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="party in statistics.parties">
                                 <td class="text-start">{{party.name}}</td>
                                 <td>{{party.members.length > 0 ? party.members.length : "-"}}</td>
-                                <td>{{party.averageVotes ? party.averageVotes + '%' : "-"}}</td>
+                                <td>{{party["averageVotes"] ? party["averageVotes"] + '%' : "-"}}</td>
                             </tr>
-                            <tr>
-                                <td>Total of Representatives</td>
+                            <tr class="thead">
+                                <td >Total</td>
                                 <td>{{statistics.total.length}}</td>
                                 <td>{{isNaN(statistics.totalAverageVotes) ? "-" : statistics.totalAverageVotes + '%'}}
                                 </td>
@@ -141,7 +141,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="member in statistics.least_loyals">
-                                <td id="td-max-width" class="text-start"> <a v-model:href="member.url" target="_BLANK">
+                                <td class="td-max-width" class="text-start"> <a v-model:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
                                 <td>{{member.missed_votes}}</td>
@@ -164,7 +164,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="member in statistics.most_loyals">
-                                <td id="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
+                                <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
                                 <td>{{member.missed_votes}}</td>

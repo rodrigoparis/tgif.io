@@ -117,7 +117,7 @@
             </section>
 
             <table class="table table-light table-hover">
-                <thead class="sticky-top thead" v-if="!isEmpty">
+                <thead class="sticky-top thead" v-show="!isEmpty">
                     <tr class="table text-center justify-content-between">
                         <th @click="sortTable('last_name')">
                             Full name
@@ -145,18 +145,18 @@
                 </thead>
                 <tbody id="data">
                     <tr v-for="member in filteredMembers">
-                        <td id="td-max-width" class="text-start">
+                        <td class="text-start td-max-width">
                             <a v-bind:href="member.url">{{member.last_name}}, {{member.middle_name || ''}}
                                 {{member.first_name}}</a> </a>
                         </td>
                         <td id="party">{{member.party}}</td>
                         <td>{{member.state}}</td>
-                        <td>{{Number.parseInt(member.seniority)}}</td>
-                        <td>{{Number.parseFloat(member.votes_with_party_pct)}}%</td>
+                        <td class="td-max-width">{{Number.parseInt(member.seniority)}}</td>
+                        <td >{{Number.parseFloat(member.votes_with_party_pct)}}%</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="notfound-div" id="no-values" v-if="isEmpty">
+            <div class="notfound-div" id="no-values" v-show="isEmpty">
                 <p id="confused-text" class="text-center">Oh no! No results match your request</p>
                 <img src="./assets/confused.png" alt="confused image" id="confused-img">
 

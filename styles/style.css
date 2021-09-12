@@ -183,6 +183,11 @@ p{
 
 
 @media (max-width: 600px) {
+
+*{
+  padding: 0;
+  margin: 0;
+}
 h1{
   font-size: 4vh!important;
   margin: 2vh 2vh;
@@ -210,11 +215,11 @@ header{
 
 
 .p-4 {
-  padding: 1rem .2rem!important;
+  padding: 1rem 0rem!important;
 }
 
-#td-max-width{
-  max-width: 4vw;
+.td-max-width{
+  max-width: 60px;
 }
 
 .arrow{

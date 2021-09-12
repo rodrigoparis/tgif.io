@@ -106,9 +106,9 @@
                     <table class="table table-bordered table-hover">
                         <thead class="text-center"> 
                             <tr class="table thead">
-                                <th>Party</th>
-                                <th>N° of Representatives</th>
-                                <th>% Missed Votes</th>
+                                <th class="td-max-width align-middle">Party</th>
+                                <th class="td-max-width">N° of Repr.</th>
+                                <th class="td-max-width">% Missed Votes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,8 +117,8 @@
                                 <td>{{party.members.length > 0 ? party.members.length : "-"}}</td>
                                 <td>{{party["averageMissed"] ? party["averageMissed"] + '%' : "-"}}</td>
                             </tr>
-                            <tr>
-                                <td>Total of Representatives</td>
+                            <tr class="thead">
+                                <td >Total</td>
                                 <td>{{statistics.total.length}}</td>
                                 <td>{{isNaN(statistics.totalAverageMissed) ? "-" : statistics.totalAverageMissed + '%'}}
                                 </td>
@@ -141,7 +141,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="member in statistics.least_engaged">
-                                <td id="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
+                                <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
                                 <td>{{member.missed_votes}}</td>
@@ -164,7 +164,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="member in statistics.most_engaged">
-                                <td id="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
+                                <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
                                 <td>{{member.missed_votes}}</td>
