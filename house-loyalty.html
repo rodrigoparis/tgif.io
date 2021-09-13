@@ -135,8 +135,8 @@
                         <thead class="sticky-top">
                             <tr class="table thead">
                                 <th class="text-center align-middle">Name of Representative</th>
-                                <th class="text-center align-middle">N° of Missed Votes</th>
-                                <th class="text-center align-middle">% Missed Votes</th>
+                                <th class="text-center align-middle">N° of Votes</th>
+                                <th class="text-center align-middle">% Votes w/Party</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,8 +144,8 @@
                                 <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
-                                <td>{{member.missed_votes}}</td>
-                                <td>{{member.missed_votes_pct}}%</td>
+                                <td>{{member.votes_with}}</td>
+                                <td>{{member.votes_with_party_pct}}%</td>
                             </tr>
 
 
@@ -167,8 +167,8 @@
                                 <td class="td-max-width" class="text-start"> <a v-bind:href="member.url" target="_BLANK">
                                         {{member.last_name}}, {{member.middle_name ? member.middle_name : ''}}
                                         {{member.first_name}}</a></td>
-                                <td>{{member.missed_votes}}</td>
-                                <td>{{member.missed_votes_pct}}%</td>
+                                <td>{{member.votes_with}}</td>
+                                <td>{{member.votes_with_party_pct}}%</td>
                             </tr>
 
 
